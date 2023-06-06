@@ -6,25 +6,43 @@ using TMPro;
 
 public class TextGameManager : MonoBehaviour
 {
-    public TextMeshProUGUI storyTextMeshPro, hpTextMeshPro, staminaTextMeshPro;
-    public string storyText;
+    public TextMeshProUGUI gametitleTextMeshPro, storyTextMeshPro, hpTextMeshPro, staminaTextMeshPro;
+    public string gameTitle, storyText;
     public int hpValue, staminaValue;
-    public GameObject Level_1_Choices;
-    public GameObject Level_1_Story;
+    public GameObject Main_Menu, HP_Text, Stamina_Text, Level_1_Choices, Level_1_Story, Exitt;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameTitle = "Dreamlike";
+        Main_Menu.SetActive(true);
+        Level_1_Choices.SetActive(false);
+        HP_Text.SetActive(false);
+        Stamina_Text.SetActive(false);
+        Exitt.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        gametitleTextMeshPro.text = gameTitle;
         storyTextMeshPro.text = storyText;
         hpTextMeshPro.text = hpValue.ToString();
         staminaTextMeshPro.text = staminaValue.ToString();
     }
+
+    public void StartGame()
+    {
+        gameTitle = " ";
+        Main_Menu.SetActive(false);
+        storyText = "You wake up in the middle of the night due to a noise you hear from somewhere in the house, Even though you're very tired, you're debating if you should check it out or not.";
+        Level_1_Choices.SetActive(true);
+        HP_Text.SetActive(true);
+        Stamina_Text.SetActive(true);
+        Exitt.SetActive(true);
+    }
+
+    
 
     //Level 1 stuff ecksdee
     public void GoDownstairs()
@@ -61,4 +79,9 @@ public class TextGameManager : MonoBehaviour
         Level_1_Story.SetActive(false) ;
     }
 
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
